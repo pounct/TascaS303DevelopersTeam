@@ -3,10 +3,7 @@ package nivell1.entitats;
 public abstract class Producte {
 	
 	protected int id;
-	protected String designacio;
-
-	//public Producte() {
-	//}
+	protected double preu;
 
 	public int getId() {
 		return id;
@@ -16,13 +13,21 @@ public abstract class Producte {
 		this.id = id;
 	}
 
-	public String getDesignacio() {
-		return designacio;
+	public double getPreu() {
+		return preu;
 	}
 
-	public void setDesignacio(String designacio) {
-		this.designacio = designacio;
+	public void setPreu(double preu) {
+		this.preu = preu;
 	}
+
+//	public String getDesignacio() {
+//		return designacio;
+//	}
+//
+//	public void setDesignacio(String designacio) {
+//		this.designacio = designacio;
+//	}
 /*
 	@Override
 	public String toString() {

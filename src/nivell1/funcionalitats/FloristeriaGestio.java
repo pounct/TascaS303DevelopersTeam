@@ -13,8 +13,10 @@ import nivell1.entitats.Flor;
 import nivell1.entitats.Floristeria;
 import nivell1.entitats.Indexacio;
 import nivell1.entitats.LiniaCompra;
+import nivell1.entitats.LiniaTicket;
 import nivell1.entitats.LiniaVenda;
 import nivell1.entitats.Producte;
+import nivell1.entitats.Ticket;
 import nivell1.entitats.Venda;
 
 public class FloristeriaGestio {
@@ -34,6 +36,8 @@ public class FloristeriaGestio {
 	// gestion Stock
 	private Stock stock;
 	// gestion Compra Venda
+	private ArrayList<Ticket> tickets = new ArrayList<>();
+	private ArrayList<LiniaTicket> liniesTicket = new ArrayList<>();
 	private ArrayList<Compra> compres = new ArrayList<>();
 	private ArrayList<Venda> vendes = new ArrayList<>();
 	private ArrayList<LiniaCompra> liniesCompres = new ArrayList<>();
@@ -57,7 +61,7 @@ public class FloristeriaGestio {
 	public Floristeria crearFloristeria(String nom) {
 
 		// Crear i initialtzar Indexacio
-		indexacio = new Indexacio(0, 0, 0, 0, 0, 0);
+		indexacio = new Indexacio(0, 0, 0, 0);
 		indexacions.add(indexacio);
 		// Crear Floristeria.
 		floristeria = new Floristeria();
@@ -75,123 +79,50 @@ public class FloristeriaGestio {
 	}
 
 	// Afegir Arbre ///////////////////////////////////////
-	public void afegirArbre(String nom, double preu, float alcada) {
+	public void afegirArbre(double preu, float alcada) {
 		// Crear Arbre Producte compra i LiniaCompra
 		Arbre arbre = new Arbre();
-		//Producte producte = new Producte();
-		Compra compra = new Compra();
-		LiniaCompra liniaCompra = new LiniaCompra();
 		// indexacio...
 		int producteId = indexacio.getIndexProducte();
-		int compraId = indexacio.getIndexCompra();
-		int liniaId = indexacio.getIndexLiniaCompra();
-		Date dateC = new Date(System.currentTimeMillis());
-
 		// afegir Arbre
 		arbre.setId(producteId);
 		arbre.setAlcada(alcada);
-		this.arbres.add(arbre);
-
-		// afegir depemdencies
-		//producte.setId(producteId);
-		//producte.setDesignacio(nom);
-		//this.productes.add(producte);
-		//////////////////////
-		compra.setId(compraId);
-		compra.setDate(dateC);
-		this.compres.add(compra);
-		////////////////////////
-		liniaCompra.setCompraId(compraId);
-		liniaCompra.setId(liniaId);
-		liniaCompra.setProducteId(producteId);
-		liniaCompra.setPreu(preu);
-		this.liniesCompres.add(liniaCompra);
-		// Guardar modificacions (entitats)
+		this.arbres.add(arbre);		
+		// Guardar modificacions
 		entitatsData.saveIndexacions(indexacions);
 		entitatsData.saveArbres(arbres);
-		entitatsData.saveCompres(compres);
-		entitatsData.saveLiniesCompres(liniesCompres);
-		//entitatsData.saveProductes(productes);
 	}
 
 	// Afegir Flor ///////////////////////////////////////
 	public void afegirFlor(String nom, double preu, String color) {
 		// Crear Flor Producte compra i LiniaCompra
 		Flor flor = new Flor();
-		//Producte producte = new Producte();
-		Compra compra = new Compra();
-		LiniaCompra liniaCompra = new LiniaCompra();
 		// indexacio...
 		int producteId = indexacio.getIndexProducte();
-		int compraId = indexacio.getIndexCompra();
-		int liniaId = indexacio.getIndexLiniaCompra();
-		Date dateC = new Date(System.currentTimeMillis());
-
 		// afegir Flor
 		flor.setId(producteId);
 		flor.setColor(color);
 		this.flors.add(flor);
-
-		// afegir depemdencies
-		//producte.setId(producteId);
-		//producte.setDesignacio(nom);
-		//this.productes.add(producte);
-		//////////////////////
-		compra.setId(compraId);
-		compra.setDate(dateC);
-		this.compres.add(compra);
-		////////////////////////
-		liniaCompra.setCompraId(compraId);
-		liniaCompra.setId(liniaId);
-		liniaCompra.setProducteId(producteId);
-		liniaCompra.setPreu(preu);
-		this.liniesCompres.add(liniaCompra);
-		// Guardar entitats
+		// Guardar modificacions 
 		entitatsData.saveIndexacions(indexacions);
 		entitatsData.saveFlors(flors);
-		entitatsData.saveCompres(compres);
-		entitatsData.saveLiniesCompres(liniesCompres);
-		//entitatsData.saveProductes(productes);
 	}
 
 	// Afegir Decoracio ///////////////////////////////////////
 	public void afegirDecoracio(String nom, double preu, Material material) {
 		// Crear Decoracio Producte compra i LiniaCompra
 		Decoracio decoracio = new Decoracio();
-		//Producte producte = new Producte();
-		Compra compra = new Compra();
-		LiniaCompra liniaCompra = new LiniaCompra();
 		// indexacio...
 		int producteId = indexacio.getIndexProducte();
-		int compraId = indexacio.getIndexCompra();
-		int liniaId = indexacio.getIndexLiniaCompra();
-		Date dateC = new Date(System.currentTimeMillis());
 
 		// afegir Decoracio
 		decoracio.setId(producteId);
 		decoracio.setMaterial(material);
 		this.decoracions.add(decoracio);
 
-		// afegir depemdencies
-		//producte.setId(producteId);
-		//producte.setDesignacio(nom);
-		//this.productes.add(producte);
-		//////////////////////
-		compra.setId(compraId);
-		compra.setDate(dateC);
-		this.compres.add(compra);
-		////////////////////////
-		liniaCompra.setCompraId(compraId);
-		liniaCompra.setId(liniaId);
-		liniaCompra.setProducteId(producteId);
-		liniaCompra.setPreu(preu);
-		this.liniesCompres.add(liniaCompra);
-		// Guardar entitats
+		// Guardar entitat
 		entitatsData.saveIndexacions(indexacions);
 		entitatsData.saveDecoracions(decoracions);
-		entitatsData.saveCompres(compres);
-		entitatsData.saveLiniesCompres(liniesCompres);
-		//entitatsData.saveProductes(productes);
 	}
 
 	// Stock
@@ -207,37 +138,21 @@ public class FloristeriaGestio {
 		if (producte != null) {
 			this.productes.remove(producte);
 			this.arbres.remove(getArbre(producteId));
-			LiniaCompra liniaCompra = getLiniaCompraByProducteId(producteId);
-			// otre control.....
-			this.liniesCompres.remove(liniaCompra);
-			LiniaVenda liniaVenda = getLiniaVendaByProducteId(producteId);
-			if (liniaVenda != null) {
-				this.liniesVendes.remove(liniaVenda);
-			}
+			// Guardar modificacions 
 			entitatsData.saveArbres(arbres);
 			//entitatsData.saveProductes(productes);
-			entitatsData.saveLiniesCompres(liniesCompres);
-			entitatsData.saveLiniesVendes(liniesVendes);
 		}
 	}
 
-	// Retirar Arbre
+	// Retirar Flor
 	public void retirarFlor(int producteId) {
 		Producte producte = getProducte(producteId);
 		if (producte != null) {
 			this.productes.remove(producte);
 			this.flors.remove(getFlor(producteId));
-			LiniaCompra liniaCompra = getLiniaCompraByProducteId(producteId);
-			// otre control.....
-			this.liniesCompres.remove(liniaCompra);
-			LiniaVenda liniaVenda = getLiniaVendaByProducteId(producteId);
-			if (liniaVenda != null) {
-				this.liniesVendes.remove(liniaVenda);
-			}
+			// Guardar modificacions 
 			entitatsData.saveFlors(flors);
 			//entitatsData.saveProductes(productes);
-			entitatsData.saveLiniesCompres(liniesCompres);
-			entitatsData.saveLiniesVendes(liniesVendes);
 		}
 	}
 
@@ -247,17 +162,9 @@ public class FloristeriaGestio {
 		if (producte != null) {
 			this.productes.remove(producte);
 			this.decoracions.remove(getDecoracio(producteId));
-			LiniaCompra liniaCompra = getLiniaCompraByProducteId(producteId);
-			// otre control.....
-			this.liniesCompres.remove(liniaCompra);
-			LiniaVenda liniaVenda = getLiniaVendaByProducteId(producteId);
-			if (liniaVenda != null) {
-				this.liniesVendes.remove(liniaVenda);
-			}
+			// Guardar modificacions 
 			entitatsData.saveDecoracions(decoracions);
 			//entitatsData.saveProductes(productes);
-			entitatsData.saveLiniesCompres(liniesCompres);
-			entitatsData.saveLiniesVendes(liniesVendes);
 		}
 	}
 
@@ -269,7 +176,7 @@ public class FloristeriaGestio {
 	public double getValorStockArbres() {
 		double valor = 0;
 		for (Arbre arb : stock.getArbres()) {
-			valor += getLiniaCompraByProducteId(arb.getId()).getPreu();
+			valor += arb.getPreu();
 		}
 		return valor;
 	}
@@ -278,7 +185,7 @@ public class FloristeriaGestio {
 	public double getValorStockFlors() {
 		double valor = 0;
 		for (Flor flo : stock.getFlors()) {
-			valor += getLiniaCompraByProducteId(flo.getId()).getPreu();
+			valor += flo.getPreu();
 		}
 		return valor;
 	}
@@ -287,12 +194,26 @@ public class FloristeriaGestio {
 	public double getValorStockDecoracions() {
 		double valor = 0;
 		for (Decoracio dec : stock.getDecoracions()) {
-			valor += getLiniaCompraByProducteId(dec.getId()).getPreu();
+			valor += dec.getPreu();
 		}
 		return valor;
 	}
 
 	//
+	
+	public Ticket crearTicket() {
+		Ticket ticket = new Ticket();
+
+		int compraId = indexacio.getIndexCompra();
+		Date dateC = new Date(System.currentTimeMillis());
+
+		ticket.setId(compraId);
+
+		this.tickets.add(ticket);
+		entitatsData.saveTickets(tickets);
+
+		return ticket;
+	}
 	public Compra crearCompra() {
 		Compra compra = new Compra();
 
@@ -315,10 +236,11 @@ public class FloristeriaGestio {
 		// inicialitzar entitats Stock
 		liniesCompres = entitatsData.getLiniesCompres();
 		liniesVendes = entitatsData.getLiniesVendes();
-		productes = entitatsData.getProductes();
+		
 		arbres = entitatsData.getArbres();
 		flors = entitatsData.getFlors();
 		decoracions = entitatsData.getDecoracions();
+		productes = entitatsData.getProductes();
 		// ini stock
 		stock = new Stock();
 		// productes en stock = liniesCompres - liniesVendes
@@ -600,7 +522,7 @@ public class FloristeriaGestio {
 			for (LiniaCompra liniaCompra : liniesCompres) {
 				totalCompra = 0;
 				if (liniaCompra.getCompraId() == compra.getId()) {
-					resultat += "" + liniaCompra.getId() + getProducte(liniaCompra.getProducteId()).getDesignacio()
+					resultat += "" + liniaCompra.getId() + getProducte(liniaCompra.getProducteId()).getPreu()
 							+ liniaCompra.getPreu();
 					resultat += "\n";
 					totalCompra += liniaCompra.getPreu();

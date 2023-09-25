@@ -9,6 +9,11 @@ public class Flor extends Producte {
 	public Flor() {
 	}
 
+	public Flor(String color,double preu) {
+		this.color = color;
+		this.setPreu(preu);
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -27,7 +32,7 @@ public class Flor extends Producte {
 
 	@Override
 	public String toString() {
-		return id + "\t" + color;
+		return id + "\t" + color + "\t" + this.getPreu();
 	}
 	
 	public Flor fromString(String linia) {
@@ -35,7 +40,7 @@ public class Flor extends Producte {
 		String[] campos = linia.split("\t");
 		this.setId(Integer.parseInt(campos[0]));
 		this.setColor(campos[1]);
-		
+		this.setPreu(Float.parseFloat(campos[2]));
 		return this;
 		
 	}

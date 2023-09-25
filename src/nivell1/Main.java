@@ -50,7 +50,7 @@ public class Main {
 //			default:
 //				break;
 //			}
-			System.out.println(" Floristeria actiu : " + ((floristeria != null) ? floristeria.getNom() : ""));
+			System.out.println(" Floristeria actiu : " + ((floristeria != null) ? floristeria.getNom() : "cap"));
 
 			Menus.menuPrincipal();
 			opcion = sc.nextByte();
@@ -218,15 +218,15 @@ public class Main {
 
 	private static void afegirArbre() {
 
-		System.out.println("designacio : ");
-		String nom = sc.nextLine();
-		System.out.println("preu de compra : ");
+		//System.out.println("designacio : ");
+		//String nom = sc.nextLine();
+		System.out.println("preu : ");
 		double preu = sc.nextDouble();
 		sc.nextLine();
 		System.out.println("alcada del arbre : ");
 		float alcada = sc.nextFloat();
 		sc.nextLine();
-		floristeriaGestio.afegirArbre(nom, preu, alcada);
+		floristeriaGestio.afegirArbre(preu, alcada);
 	}
 
 	public static void afegirFlor() {

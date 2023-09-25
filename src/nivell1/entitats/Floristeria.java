@@ -8,7 +8,10 @@ public class Floristeria {
 	private String nom;
 
 	public Floristeria() {
-		super();
+	}
+
+	public Floristeria(String nom) {
+		this.nom = nom;
 	}
 
 	public int getId() {

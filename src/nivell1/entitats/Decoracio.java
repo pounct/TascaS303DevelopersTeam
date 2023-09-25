@@ -14,6 +14,13 @@ public class Decoracio extends Producte {
 
 	public Decoracio() {
 	}
+	
+
+	public Decoracio(Material material,double preu) {
+		this.material = material;
+		this.setPreu(preu);
+	}
+
 
 	public int getId() {
 		return id;
@@ -33,7 +40,7 @@ public class Decoracio extends Producte {
 
 	@Override
 	public String toString() {
-		return id + "\t" + material;
+		return id + "\t" + material + "\t" + this.getPreu();
 	}
 	
 	public Decoracio fromString(String linia) {
@@ -47,7 +54,7 @@ public class Decoracio extends Producte {
 
 		this.setId(Integer.parseInt(campos[0]));
 		this.setMaterial(material);
-		
+		this.setPreu(Float.parseFloat(campos[2]));		
 		return this;		
 	}
 }

@@ -11,6 +11,7 @@ import nivell1.entitats.Indexacio;
 import nivell1.entitats.LiniaCompra;
 import nivell1.entitats.LiniaVenda;
 import nivell1.entitats.Producte;
+import nivell1.entitats.Ticket;
 import nivell1.entitats.Venda;
 
 public class EntitatsData {
@@ -25,13 +26,11 @@ public class EntitatsData {
 	private ArrayList<LiniaVenda> liniesVendes;
 	private ArrayList<Producte> productes;
 	private ArrayList<Venda> vendes;
-	
+
 	private Floristeria floristeria;
-	//  = "data_txt\\" + floristeria.getNom() + "db\\"
+	// = "data_txt\\" + floristeria.getNom() + "db\\"
 	private String pathFloristeriaDB;
 	private String path; // to fitxer
-
-	
 
 	public EntitatsData() {
 	}
@@ -265,32 +264,28 @@ public class EntitatsData {
 
 	public ArrayList<Producte> getProductes() {
 
-		//path = pathFloristeriaDB + "Producte" + "Data.txt";
+		// path = pathFloristeriaDB + "Producte" + "Data.txt";
 		productes = new ArrayList<>();
-		arbres.forEach(a->productes.add(a));
-		flors.forEach(f->productes.add(f));
-		decoracions.forEach(d->productes.add(d));
+		arbres.forEach(a -> productes.add(a));
+		flors.forEach(f -> productes.add(f));
+		decoracions.forEach(d -> productes.add(d));
 		return productes;
 	}
 
-	/*private ArrayList<Producte> liniesToProductes(ArrayList<String> linies) {
-		Producte producte;
-		ArrayList<Producte> productes = new ArrayList<>();
-		linies.forEach(linia -> productes.add(producte.fromString(linia)));
-		return productes;
-	}
-
-	public void saveProductes(ArrayList<Producte> productes) {
-		// save arbres flors decoracions
-		//path = pathFloristeriaDB + "Producte" + "Data.txt";
-		//Persistencia.saveLines(productesToLinies(productes), path);
-	}
-
-	private ArrayList<String> productesToLinies(ArrayList<Producte> productes) {
-		ArrayList<String> linies = new ArrayList<>();
-		productes.forEach(producte -> linies.add(producte.toString()));
-		return linies;
-	}*/
+	/*
+	 * private ArrayList<Producte> liniesToProductes(ArrayList<String> linies) {
+	 * Producte producte; ArrayList<Producte> productes = new ArrayList<>();
+	 * linies.forEach(linia -> productes.add(producte.fromString(linia))); return
+	 * productes; }
+	 * 
+	 * public void saveProductes(ArrayList<Producte> productes) { // save arbres
+	 * flors decoracions //path = pathFloristeriaDB + "Producte" + "Data.txt";
+	 * //Persistencia.saveLines(productesToLinies(productes), path); }
+	 * 
+	 * private ArrayList<String> productesToLinies(ArrayList<Producte> productes) {
+	 * ArrayList<String> linies = new ArrayList<>(); productes.forEach(producte ->
+	 * linies.add(producte.toString())); return linies; }
+	 */
 
 //	Venda vendes
 
@@ -317,11 +312,24 @@ public class EntitatsData {
 		vendes.forEach(venda -> linies.add(venda.toString()));
 		return linies;
 	}
-	
+
 	// dirctori db
 
 	public void crearDirectoriFloristeria(Floristeria floristeria) {
-		ServeisDataBase.crearDirectori(pathFloristeriaDB);		
+		ServeisDataBase.crearDirectori(pathFloristeriaDB);
+	}
+
+//	Ticket tickets
+	public void saveTickets(ArrayList<Ticket> tickets) {
+		path = pathFloristeriaDB + "Ticket" + "Data.txt";
+		Persistencia.saveLines(ticketsToLinies(tickets), path);
+
+	}
+
+	private ArrayList<String> ticketsToLinies(ArrayList<Ticket> tickets) {
+		ArrayList<String> linies = new ArrayList<>();
+		tickets.forEach(ticket -> linies.add(ticket.toString()));
+		return linies;
 	}
 
 }

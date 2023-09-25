@@ -9,6 +9,13 @@ public class Arbre extends Producte {
 
 	public Arbre() {
 	}
+	
+
+	public Arbre(float alcada,double preu) {
+		this.setPreu(preu);
+		this.alcada = alcada;
+	}
+
 
 	public int getId() {
 		return id;
@@ -25,6 +32,12 @@ public class Arbre extends Producte {
 	public void setAlcada(float alcada) {
 		this.alcada = alcada;
 	}
+	
+
+	@Override
+	public String toString() {
+		return id + "\t" + alcada + "\t" + this.getPreu();
+	}
 
 	
 	public Arbre fromString(String linia) {
@@ -32,14 +45,11 @@ public class Arbre extends Producte {
 		String[] campos = linia.split("\t");
 		this.setId(Integer.parseInt(campos[0]));
 		this.setAlcada(Float.parseFloat(campos[1]));
+		this.setPreu(Float.parseFloat(campos[2]));
 
 		return this;
 	}
 	
 
-	@Override
-	public String toString() {
-		return id + "\t" + alcada;
-	}
 
 }
