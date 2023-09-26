@@ -3,35 +3,39 @@ package nivell1.persistencia;
 import java.util.ArrayList;
 
 import nivell1.entitats.Arbre;
-import nivell1.entitats.Compra;
 import nivell1.entitats.Decoracio;
 import nivell1.entitats.Flor;
 import nivell1.entitats.Floristeria;
 import nivell1.entitats.Indexacio;
-import nivell1.entitats.LiniaCompra;
-import nivell1.entitats.LiniaVenda;
+import nivell1.entitats.LiniaTicket;
 import nivell1.entitats.Producte;
-import nivell1.entitats.Venda;
+import nivell1.entitats.Ticket;
 
 public class EntitatsData {
 
-	private ArrayList<Arbre> arbres;
-	private ArrayList<Compra> compres;
-	private ArrayList<Decoracio> decoracions;
-	private ArrayList<Flor> flors;
 	private ArrayList<Floristeria> floristeries;
-	private ArrayList<Indexacio> indexacions;
-	private ArrayList<LiniaCompra> liniesCompres;
-	private ArrayList<LiniaVenda> liniesVendes;
-	private ArrayList<Producte> productes;
-	private ArrayList<Venda> vendes;
-	
 	private Floristeria floristeria;
-	//  = "data_txt\\" + floristeria.getNom() + "db\\"
-	private String pathFloristeriaDB;
-	private String path; // to fitxer
 
-	
+	private String pathFloristeriaDB;
+	private String path; // to fitxers
+
+	private ArrayList<Indexacio> indexacions;
+	private int indexFloristeries;
+
+	private ArrayList<Arbre> arbres;
+	private ArrayList<Flor> flors;
+	private ArrayList<Decoracio> decoracions;
+	private ArrayList<Producte> productes;
+
+	private ArrayList<Ticket> tickets;
+	private ArrayList<LiniaTicket> liniesTickets;
+
+	// private ArrayList<Compra> compres;
+
+	// private ArrayList<LiniaCompra> liniesCompres;
+	// private ArrayList<LiniaVenda> liniesVendes;
+
+	// private ArrayList<Venda> vendes;
 
 	public EntitatsData() {
 	}
@@ -44,16 +48,16 @@ public class EntitatsData {
 		return arbres;
 	}
 
+	public void saveArbres(ArrayList<Arbre> arbres) {
+		path = pathFloristeriaDB + "Arbre" + "Data.txt";
+		Persistencia.saveLines(arbresToLinies(arbres), path);
+	}
+
 	public ArrayList<Arbre> liniesToArbres(ArrayList<String> linies) {
 		Arbre arbre = new Arbre();
 		ArrayList<Arbre> arbres = new ArrayList<>();
 		linies.forEach(linia -> arbres.add(arbre.fromString(linia)));
 		return arbres;
-	}
-
-	public void saveArbres(ArrayList<Arbre> arbres) {
-		path = pathFloristeriaDB + "Arbre" + "Data.txt";
-		Persistencia.saveLines(arbresToLinies(arbres), path);
 	}
 
 	public ArrayList<String> arbresToLinies(ArrayList<Arbre> arbres) {
@@ -62,31 +66,58 @@ public class EntitatsData {
 		return linies;
 	}
 
-	// compres Compra
+//	Flor flors;
 
-	public ArrayList<Compra> getCompres() {
-		path = pathFloristeriaDB + "Compra" + "Data.txt";
-		compres = liniesTocompres(Persistencia.getLinies(path));
-		return compres;
+	public ArrayList<Flor> getFlors() {
+		path = pathFloristeriaDB + "Flor" + "Data.txt";
+		flors = liniesToFlors(Persistencia.getLinies(path));
+		return flors;
 	}
 
-	public ArrayList<Compra> liniesTocompres(ArrayList<String> linies) {
-		Compra compra = new Compra();
-		ArrayList<Compra> compres = new ArrayList<>();
-		linies.forEach(linia -> compres.add(compra.fromString(linia)));
-		return compres;
+	public ArrayList<Flor> liniesToFlors(ArrayList<String> linies) {
+		Flor flor = new Flor();
+		ArrayList<Flor> flors = new ArrayList<>();
+		linies.forEach(linia -> flors.add(flor.fromString(linia)));
+		return flors;
 	}
 
-	public void saveCompres(ArrayList<Compra> compres) {
-		path = pathFloristeriaDB + "Compra" + "Data.txt";
-		Persistencia.saveLines(compresToLinies(compres), path);
+	public void saveFlors(ArrayList<Flor> flors) {
+		path = pathFloristeriaDB + "Flor" + "Data.txt";
+		Persistencia.saveLines(florsToLinies(flors), path);
+
 	}
 
-	public ArrayList<String> compresToLinies(ArrayList<Compra> compres) {
+	public ArrayList<String> florsToLinies(ArrayList<Flor> flors) {
 		ArrayList<String> linies = new ArrayList<>();
-		compres.forEach(compra -> linies.add(compra.toString()));
+		flors.forEach(flor -> linies.add(flor.toString()));
 		return linies;
 	}
+
+	// compres Compra
+
+//	public ArrayList<Compra> getCompres() {
+//		path = pathFloristeriaDB + "Compra" + "Data.txt";
+//		compres = liniesTocompres(Persistencia.getLinies(path));
+//		return compres;
+//	}
+//
+//	public ArrayList<Compra> liniesTocompres(ArrayList<String> linies) {
+//		Compra compra = new Compra();
+//		ArrayList<Compra> compres = new ArrayList<>();
+//		linies.forEach(linia -> compres.add(compra.fromString(linia)));
+//		return compres;
+//	}
+//
+//	public void saveCompres(ArrayList<Compra> compres) {
+//		path = pathFloristeriaDB + "Compra" + "Data.txt";
+//		Persistencia.saveLines(compresToLinies(compres), path);
+//	}
+//
+//	public ArrayList<String> compresToLinies(ArrayList<Compra> compres) {
+//		ArrayList<String> linies = new ArrayList<>();
+//		compres.forEach(compra -> linies.add(compra.toString()));
+//		return linies;
+//	}
 
 	// decoracions Decoracio
 
@@ -114,33 +145,6 @@ public class EntitatsData {
 		return linies;
 	}
 
-//	Flor flors;
-
-	public ArrayList<Flor> getFlors() {
-		path = pathFloristeriaDB + "Flor" + "Data.txt";
-		flors = liniesToFlors(Persistencia.getLinies(path));
-		return flors;
-	}
-
-	public ArrayList<Flor> liniesToFlors(ArrayList<String> linies) {
-		Flor flor = new Flor();
-		ArrayList<Flor> flors = new ArrayList<>();
-		linies.forEach(linia -> flors.add(flor.fromString(linia)));
-		return flors;
-	}
-
-	public void saveFlors(ArrayList<Flor> flors) {
-		path = pathFloristeriaDB + "Flor" + "Data.txt";
-		Persistencia.saveLines(florsToLinies(flors), path);
-
-	}
-
-	private ArrayList<String> florsToLinies(ArrayList<Flor> flors) {
-		ArrayList<String> linies = new ArrayList<>();
-		flors.forEach(flor -> linies.add(flor.toString()));
-		return linies;
-	}
-
 //	floristeria Floristeria
 
 	public Floristeria getFloristeria() {
@@ -148,14 +152,12 @@ public class EntitatsData {
 	}
 
 	public Floristeria setFloristeria(Floristeria floristeria) {
-		// .\\src\\nivell1\\java\\n2exercici1\\treballador.json
-		// /TascaS303DevelopersTeam/src/nivell1/EntitatsData.java
 		pathFloristeriaDB = ".\\src\\nivell1\\data_txt\\" + floristeria.getNom() + "db\\";
 		this.floristeria = floristeria;
 		return this.floristeria;
 	}
 
-//	floristeries Floristeria
+//	Floristeria floristeries 
 
 	public ArrayList<Floristeria> getFloristeries() {
 		path = ".\\src\\nivell1\\data_txt\\" + "Floristeria" + "Data.txt";
@@ -209,119 +211,91 @@ public class EntitatsData {
 		return linies;
 	}
 
-//	LiniaCompra liniesCompres
-
-	public ArrayList<LiniaCompra> getLiniesCompres() {
-		path = pathFloristeriaDB + "LiniaCompra" + "Data.txt";
-		liniesCompres = liniesToLiniesCompres(Persistencia.getLinies(path));
-		return liniesCompres;
-	}
-
-	public ArrayList<LiniaCompra> liniesToLiniesCompres(ArrayList<String> linies) {
-		LiniaCompra liniaCompra = new LiniaCompra();
-		ArrayList<LiniaCompra> liniesCompres = new ArrayList<>();
-		linies.forEach(linia -> liniesCompres.add(liniaCompra.fromString(linia)));
-		return liniesCompres;
-	}
-
-	public void saveLiniesCompres(ArrayList<LiniaCompra> liniesCompres) {
-		path = pathFloristeriaDB + "LiniaCompra" + "Data.txt";
-		Persistencia.saveLines(liniesCompresToLinies(liniesCompres), path);
-	}
-
-	public ArrayList<String> liniesCompresToLinies(ArrayList<LiniaCompra> liniesCompres) {
-		ArrayList<String> linies = new ArrayList<>();
-		liniesCompres.forEach(liniaCompra -> linies.add(liniaCompra.toString()));
-		return linies;
-	}
-
-//	LiniaVenda liniesVendes
-
-	public ArrayList<LiniaVenda> getLiniesVendes() {
-		path = pathFloristeriaDB + "LiniaVenda" + "Data.txt";
-		liniesVendes = liniesToLiniesVendes(Persistencia.getLinies(path));
-		return liniesVendes;
-	}
-
-	public ArrayList<LiniaVenda> liniesToLiniesVendes(ArrayList<String> linies) {
-		LiniaVenda liniaVenda = new LiniaVenda();
-		ArrayList<LiniaVenda> liniesVendes = new ArrayList<>();
-		linies.forEach(linia -> liniesVendes.add(liniaVenda.fromString(linia)));
-		return liniesVendes;
-	}
-
-	public void saveLiniesVendes(ArrayList<LiniaVenda> liniesVendes) {
-		path = pathFloristeriaDB + "LiniaVenda" + "Data.txt";
-		Persistencia.saveLines(liniesVendesToLinies(liniesVendes), path);
-	}
-
-	public ArrayList<String> liniesVendesToLinies(ArrayList<LiniaVenda> liniesVendes) {
-		ArrayList<String> linies = new ArrayList<>();
-		liniesVendes.forEach(liniaVenda -> linies.add(liniaVenda.toString()));
-		return linies;
-	}
-
-//	Producte productes
-
-	public ArrayList<Producte> getProductes() {
-
-		//path = pathFloristeriaDB + "Producte" + "Data.txt";
-		productes = new ArrayList<>();
-		arbres.forEach(a->productes.add(a));
-		flors.forEach(f->productes.add(f));
-		decoracions.forEach(d->productes.add(d));
-		return productes;
-	}
-
-	/*private ArrayList<Producte> liniesToProductes(ArrayList<String> linies) {
-		Producte producte;
-		ArrayList<Producte> productes = new ArrayList<>();
-		linies.forEach(linia -> productes.add(producte.fromString(linia)));
-		return productes;
-	}
-
-	public void saveProductes(ArrayList<Producte> productes) {
-		// save arbres flors decoracions
-		//path = pathFloristeriaDB + "Producte" + "Data.txt";
-		//Persistencia.saveLines(productesToLinies(productes), path);
-	}
-
-	private ArrayList<String> productesToLinies(ArrayList<Producte> productes) {
-		ArrayList<String> linies = new ArrayList<>();
-		productes.forEach(producte -> linies.add(producte.toString()));
-		return linies;
-	}*/
-
-//	Venda vendes
-
-	public ArrayList<Venda> getVendes() {
-		path = pathFloristeriaDB + "Venda" + "Data.txt";
-		vendes = liniesToVendes(Persistencia.getLinies(path));
-		return vendes;
-	}
-
-	public ArrayList<Venda> liniesToVendes(ArrayList<String> linies) {
-		Venda venda = new Venda();
-		ArrayList<Venda> vendes = new ArrayList<>();
-		linies.forEach(linia -> vendes.add(venda.fromString(linia)));
-		return vendes;
-	}
-
-	public void saveVendes(ArrayList<Venda> vendes) {
-		path = pathFloristeriaDB + "Venda" + "Data.txt";
-		Persistencia.saveLines(vendesToLinies(vendes), path);
-	}
-
-	public ArrayList<String> vendesToLinies(ArrayList<Venda> vendes) {
-		ArrayList<String> linies = new ArrayList<>();
-		vendes.forEach(venda -> linies.add(venda.toString()));
-		return linies;
-	}
-	
 	// dirctori db
 
 	public void crearDirectoriFloristeria(Floristeria floristeria) {
-		ServeisDataBase.crearDirectori(pathFloristeriaDB);		
+		ServeisDataBase.crearDirectori(pathFloristeriaDB);
+	}
+
+//	Ticket tickets
+	public ArrayList<Ticket> getTickets() {
+		path = pathFloristeriaDB + "Ticket" + "Data.txt";
+		tickets = liniesToTickets(Persistencia.getLinies(path));
+		return tickets;
+	}
+
+	public void saveTickets(ArrayList<Ticket> tickets) {
+		path = pathFloristeriaDB + "Ticket" + "Data.txt";
+		Persistencia.saveLines(ticketsToLinies(tickets), path);
+
+	}
+
+	public ArrayList<Ticket> liniesToTickets(ArrayList<String> linies) {
+		Ticket ticket = new Ticket();
+		ArrayList<Ticket> tickets = new ArrayList<>();
+		linies.forEach(linia -> tickets.add(ticket.fromString(linia)));
+		return tickets;
+	}
+
+	private ArrayList<String> ticketsToLinies(ArrayList<Ticket> tickets) {
+		ArrayList<String> linies = new ArrayList<>();
+		tickets.forEach(ticket -> linies.add(ticket.toString()));
+		return linies;
+	}
+
+//	LiniaTicket liniesTickets
+
+	public ArrayList<LiniaTicket> getLiniesTickets() {
+		path = pathFloristeriaDB + "LiniaVenda" + "Data.txt";
+		liniesTickets = liniesToLiniesTickets(Persistencia.getLinies(path));
+		return liniesTickets;
+	}
+
+	public ArrayList<LiniaTicket> liniesToLiniesTickets(ArrayList<String> linies) {
+		LiniaTicket liniaTicket = new LiniaTicket();
+		ArrayList<LiniaTicket> liniesTickets = new ArrayList<>();
+		linies.forEach(linia -> liniesTickets.add(liniaTicket.fromString(linia)));
+		return liniesTickets;
+	}
+
+	public void saveLiniesTickets(ArrayList<LiniaTicket> liniesTickets) {
+		path = pathFloristeriaDB + "LiniaVenda" + "Data.txt";
+		Persistencia.saveLines(liniesTicketsToLinies(liniesTickets), path);
+	}
+
+	public ArrayList<String> liniesTicketsToLinies(ArrayList<LiniaTicket> liniesTickets) {
+		ArrayList<String> linies = new ArrayList<>();
+		liniesTickets.forEach(liniaTicket -> linies.add(liniaTicket.toString()));
+		return linies;
+	}
+
+//	indexFloristeries
+	public int getIndexFloristeries() {
+		path = ".\\src\\nivell1\\data_txt\\" + "IndexFloristeries" + "Data.txt";
+		indexFloristeries = liniesToIndexFloristeries(Persistencia.getLinies(path));
+		return indexFloristeries;
+	}
+
+	private int liniesToIndexFloristeries(ArrayList<String> linies) {
+		if (linies.size()==0) {
+			indexFloristeries = 0;
+		}
+		else  {
+			indexFloristeries = Integer.parseInt(linies.get(0));
+		}
+		saveIndexFloristeries(indexFloristeries++);
+		return indexFloristeries;
+	}
+
+	public void saveIndexFloristeries(int index) {
+		path = pathFloristeriaDB + "IndexFloristeries" + "Data.txt";
+		Persistencia.saveLines(indexFloristeriesToLinies(index), path);
+	}
+
+	public ArrayList<String> indexFloristeriesToLinies(int index) {
+		ArrayList<String> linies = new ArrayList<>();
+		linies.add("" + index);
+		return linies;
 	}
 
 }
