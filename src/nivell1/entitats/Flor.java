@@ -2,8 +2,6 @@ package nivell1.entitats;
 
 public class Flor extends Producte {
 
-	//private int id;
-
 	private String color;
 
 	public Flor() {
@@ -12,14 +10,6 @@ public class Flor extends Producte {
 	public Flor(String color,double preu) {
 		this.color = color;
 		this.setPreu(preu);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getColor() {
@@ -32,7 +22,7 @@ public class Flor extends Producte {
 
 	@Override
 	public String toString() {
-		return id + "\t" + color + "\t" + this.getPreu();
+		return id + "\t" + color + "\t" + preu;
 	}
 	
 	public Flor fromString(String linia) {

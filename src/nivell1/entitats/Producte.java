@@ -20,26 +20,4 @@ public abstract class Producte {
 	public void setPreu(double preu) {
 		this.preu = preu;
 	}
-
-//	public String getDesignacio() {
-//		return designacio;
-//	}
-//
-//	public void setDesignacio(String designacio) {
-//		this.designacio = designacio;
-//	}
-/*
-	@Override
-	public String toString() {
-		return id + "\t" + designacio;
-	}
-	
-	public Producte fromString(String linia) {
-		String[] campos = linia.split("\t");
-		this.setId(Integer.parseInt(campos[0]));
-		this.setDesignacio(campos[1]);
-		return this;
-	}
-	*/
-
 }

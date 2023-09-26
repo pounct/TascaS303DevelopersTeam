@@ -1,7 +1,5 @@
 package nivell1.presentacio;
 
-import java.util.Scanner;
-
 public interface Menus {
 	
 	public static void menuInitial() {
@@ -23,7 +21,7 @@ public interface Menus {
 		System.out.println(" 7.Retirar flor.");
 		System.out.println(" 8.Retirar decoració.");
 		System.out.println(" 9.Stock Amb Quantitats");
-		System.out.println(" 10.Valor Stock // Valor Compres // ValorVendes");
+		System.out.println(" 10.Valor Stock");
 		System.out.println(" 11.Compra amb múltiples objectes");
 		System.out.println(" 12.Compres Antigues.");
 		System.out.println(" 13.diners guanyats");

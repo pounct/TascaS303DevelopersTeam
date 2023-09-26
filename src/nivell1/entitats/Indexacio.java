@@ -4,10 +4,6 @@ public class Indexacio {
 	private int indexProducte;
 	private int indexTicket;
 	private int indexLiniaTicket; 
-	private int indexCompra;
-	private int indexVenda;
-	private int indexLiniaCompra;
-	private int indexLiniaVenda;
 	private int indexFloristeria;
 	
 	
@@ -24,16 +20,6 @@ public class Indexacio {
 		this.indexProducte = indexProducte;
 		this.indexTicket = indexTicket;
 		this.indexLiniaTicket = indexLiniaTicket;
-		this.indexFloristeria = indexFloristeria;
-	}
-
-	public Indexacio(int indexProducte, int indexCompra, int indexVenda, int indexLiniaCompra, int indexLiniaVenda,
-			int indexFloristeria) {
-		this.indexProducte = indexProducte;
-		this.indexCompra = indexCompra;
-		this.indexVenda = indexVenda;
-		this.indexLiniaCompra = indexLiniaCompra;
-		this.indexLiniaVenda = indexLiniaVenda;
 		this.indexFloristeria = indexFloristeria;
 	}
 
@@ -68,42 +54,6 @@ public class Indexacio {
 
 	public void setIndexLiniaTicket(int indexLiniaTicket) {
 		this.indexLiniaTicket = indexLiniaTicket;
-	}
-
-	public int getIndexCompra() {
-		int index = indexCompra++;
-		return index;
-	}
-
-	public void setIndexCompra(int indexCompra) {
-		this.indexCompra = indexCompra;
-	}
-
-	public int getIndexVenda() {
-		int index = indexVenda++;
-		return index;
-	}
-
-	public void setIndexVenda(int indexVenda) {
-		this.indexVenda = indexVenda;
-	}
-
-	public int getIndexLiniaCompra() {
-		int index = indexLiniaCompra++;
-		return index;
-	}
-
-	public void setIndexLiniaCompra(int indexLiniaCompra) {
-		this.indexLiniaCompra = indexLiniaCompra;
-	}
-
-	public int getIndexLiniaVenda() {
-		int index = indexLiniaVenda++;
-		return index;
-	}
-
-	public void setIndexLiniaVenda(int indexLiniaVenda) {
-		this.indexLiniaVenda = indexLiniaVenda;
 	}
 
 	public int getIndexFloristeria() {

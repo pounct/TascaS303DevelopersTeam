@@ -4,7 +4,7 @@ package nivell1.entitats;
 
 public class Arbre extends Producte {
 
-	private int id;
+	//private int id;
 	private float alcada; // alçada
 
 	public Arbre() {
@@ -14,15 +14,6 @@ public class Arbre extends Producte {
 	public Arbre(float alcada,double preu) {
 		this.setPreu(preu);
 		this.alcada = alcada;
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public float getAlcada() {
@@ -36,7 +27,7 @@ public class Arbre extends Producte {
 
 	@Override
 	public String toString() {
-		return id + "\t" + alcada + "\t" + this.getPreu();
+		return id + "\t" + alcada + "\t" + preu;
 	}
 
 	

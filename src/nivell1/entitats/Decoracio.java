@@ -4,8 +4,6 @@ package nivell1.entitats;
 
 public class Decoracio extends Producte {
 
-	//private int id;
-
 	public enum Material {
 		FUSTA, PLASTIC
 	}
@@ -21,15 +19,6 @@ public class Decoracio extends Producte {
 		this.setPreu(preu);
 	}
 
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Material getMaterial() {
 		return material;
 	}
@@ -40,7 +29,7 @@ public class Decoracio extends Producte {
 
 	@Override
 	public String toString() {
-		return id + "\t" + material + "\t" + this.getPreu();
+		return id + "\t" + material + "\t" + preu;
 	}
 	
 	public Decoracio fromString(String linia) {
